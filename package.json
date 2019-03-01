@@ -1,0 +1,25 @@
+{
+  "name": "levelgrpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "rm -rf /tmp/level-rpc-test-db && node t",
+    "compile": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=./ --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` level-rpc.proto"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "abstract-leveldown": "6.0.1",
+    "google-protobuf": "3.7.0-rc.3",
+    "grpc": "1.18.0",
+    "levelup": "4.0.0",
+    "oreduce": "1.0.1",
+    "xtend": "4.0.1"
+  },
+  "devDependencies": {
+    "grpc-tools": "1.7.1",
+    "leveldown": "4.0.1"
+  }
+}

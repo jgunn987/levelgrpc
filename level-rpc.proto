@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package levelrpc;
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  string key = 1;
+  string value = 2;
+}
+
+message PutRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message PutResponse {}
+
+message DelRequest {
+  string key = 1;
+}
+
+message DelResponse {}
+
+message BatchRequest {
+  message Command {
+    string type = 1;
+    string key = 2;
+    string value = 3;
+  }
+  repeated Command commands = 1;
+}
+
+message BatchResponse {}
+
+message ScanRequest {
+  string gt = 1; 
+  string gte = 2;
+  string lt = 3; 
+  string lte = 4;
+  bool reverse = 5;
+  int32 limit = 6;
+  bool keys = 7;
+  bool values = 8;
+}
+
+service LevelRpc {
+  rpc get(GetRequest) returns (GetResponse);
+  rpc put(PutRequest) returns (PutResponse);
+  rpc del(DelRequest) returns (DelResponse);
+  rpc batch(BatchRequest) returns (BatchResponse);
+  rpc scan(ScanRequest) returns (stream GetResponse);
+}
